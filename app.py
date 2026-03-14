@@ -15,14 +15,18 @@ for message in st.session_state.messages:
 prompt = st.chat_input("Ask coding question...")
 
 if prompt:
-    st.session_state.messages.append({"role": "user", "content": prompt})
+    st.session_state.messages.append(
+        {"role": "user", "content": prompt}
+    )
 
     with st.chat_message("user"):
         st.markdown(prompt)
 
     response = client.chat.completions.create(
         model="llama3-8b-8192",
-        messages=st.session_state.messages
+        messages=[
+            {"role": "user", "content": prompt}
+        ]
     )
 
     answer = response.choices[0].message.content
