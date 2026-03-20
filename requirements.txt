@@ -1,2 +1,5 @@
 streamlit
 groq
+pymongo
+bcrypt
+pandas
